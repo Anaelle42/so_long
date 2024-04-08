@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/05 18:12:06 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:01:03 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,17 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	int		img_height;
+	int		img_width;
 	void	*img;
 	void	*mur;
 	void	*sol;
+	void	*coin;
+	void	*porte;
+	void	*perso;
+	int		x;
+	int		c;
+	int		y;
 	t_map	data_map;
 	int		nb_y;
 	int		nb_x;
@@ -64,7 +72,7 @@ void		ft_error(char *error);
 void		parsing(t_data *str);
 t_Bool		check_extension(char *ext);
 t_Bool		is_valid_characters(char *line);
-void		count_characters(char *line, t_number *number);
+void	count_characters(char *line, t_number *number, t_data *str);
 void		is_closed_by_walls(t_data *str);
 
 #endif

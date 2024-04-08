@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:25:36 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/05 17:39:22 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:01:12 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_Bool	is_valid_characters(char *line)
 	return (True);
 }
 
-void	count_characters(char *line, t_number *number)
+void	count_characters(char *line, t_number *number, t_data *str)
 {
 	int	i;
 
@@ -47,7 +47,10 @@ void	count_characters(char *line, t_number *number)
 	while (line[i])
 	{
 		if (line[i] == 'C')
+		{
 			number->c++;
+			str->c++;
+		}
 		if (line[i] == 'P')
 			number->p++;
 		if (line[i] == 'E')

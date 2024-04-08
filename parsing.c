@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/08 16:44:32 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/08 21:00:07 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	flood2(char **map, t_number *number, int y, int x)
 		flood2(map, number, y, x - 1);
 }
 
-void	flood_fill(char **map, t_number number)
+void	flood_fill(char **map, t_data *str, t_number number)
 {
 	int	x;
 	int	y;
@@ -66,6 +66,8 @@ void	flood_fill(char **map, t_number number)
 			if (map[y][x] == 'P')
 			{
 				flood2(map, &number, y, x);
+				str->y = y;
+				str->x = x;
 			}
 			x++;
 		}
@@ -107,7 +109,7 @@ void	parsing(t_data *str)
 	is_closed_by_walls(str);
 	while (str->data_map.map[i])
 	{
-		count_characters(str->data_map.map[i], &number);
+		count_characters(str->data_map.map[i], &number, str);
 		if (!is_valid_characters(str->data_map.map[i]))
 			ft_error(ERROR3);
 		if (size != ft_strlen_number2(str->data_map.map[i]))
@@ -116,5 +118,5 @@ void	parsing(t_data *str)
 	}
 	if (number.e != 1 || number.p != 1 || number.c < 1)
 		ft_error(ERROR4);
-	flood_fill(copy_map(str->data_map.map, i), number);
+	flood_fill(copy_map(str->data_map.map, i), str, number);
 }
