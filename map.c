@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/05 18:12:15 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:45:27 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_map	load_map(char *file)
 		line = get_next_line(fd);
 		i++;
 	}
-	map.map = malloc(sizeof(char *) * i);
+	map.map = malloc(sizeof(char *) * (i + 1));
 	i = 0;
 	while (list)
 	{

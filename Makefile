@@ -1,12 +1,12 @@
 NAME = so_long
 
-SRC = 	map.c \
-		parsing.c \
-		parsing2.c 
+SRC = 	parsing.c \
+		parsing2.c \
+		map.c 
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g3
 MLXFLAGS = -Lminilibx-linux -lmlx -lX11 -lXext
 
 RED = \033[0;31m

@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/05 17:38:39 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:44:32 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**copy_map(char **map, int nb)
 	int		i;
 
 	i = 0;
-	copy = malloc(sizeof(char *) * nb);
+	copy = malloc(sizeof(char *) * (nb + 1));
 	if (!copy)
 		ft_error(ERROR2);
 	while (map[i])
