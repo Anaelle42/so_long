@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 17:44:25 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:24:48 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	str.mlx = mlx_init();
-	str.win = mlx_new_window(str.mlx, 80 * str.nb_x, 80 * str.nb_y, "Hello");
+	xpm(&str);
+	str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x, str.img_height
+			* str.nb_y, "So_long");
 	images(&str, str.data_map.map);
 	mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);
 	mlx_hook(str.win, DestroyNotify, StructureNotifyMask, finito, &str);

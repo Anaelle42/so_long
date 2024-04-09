@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:35:42 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 17:36:31 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/09 19:22:09 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	images(t_data *struc, char **map)
 
 	x = 0;
 	y = 0;
-	xpm(struc);
+	//xpm(struc);
 	while (map[y])
 	{
 		x = 0;
