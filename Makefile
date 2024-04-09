@@ -2,7 +2,9 @@ NAME = so_long
 
 SRC = 	parsing.c \
 		parsing2.c \
-		map.c 
+		map.c \
+		images.c \
+		move.c
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,17 +6,11 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/08 21:00:07 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:34:24 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_error(char *error)
-{
-	printf("Error\n%s\n", error);
-	exit(1);
-}
 
 size_t	ft_strlen_number2(const char *s)
 {
@@ -76,6 +70,7 @@ void	flood_fill(char **map, t_data *str, t_number number)
 	if (number.c != 0 || number.e != 0)
 		ft_error(ERROR7);
 }
+
 char	**copy_map(char **map, int nb)
 {
 	char	**copy;

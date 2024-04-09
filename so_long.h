@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/08 21:01:03 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:40:08 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,18 @@ typedef struct s_data
 	t_map	data_map;
 	int		nb_y;
 	int		nb_x;
+	int		compte_mvts;
 
 }			t_data;
 
+void		images(t_data *struc, char **map);
 void		ft_error(char *error);
+int			finito(t_data *str);
+int			fonction(int key, t_data *str);
 void		parsing(t_data *str);
 t_Bool		check_extension(char *ext);
 t_Bool		is_valid_characters(char *line);
-void	count_characters(char *line, t_number *number, t_data *str);
+void		count_characters(char *line, t_number *number, t_data *str);
 void		is_closed_by_walls(t_data *str);
 
 #endif
