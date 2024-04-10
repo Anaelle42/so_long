@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 18:35:26 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:52:34 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int	finito(t_data *str)
 {
 	mlx_destroy_window(str->mlx, str->win);
 	mlx_destroy_display(str->mlx);
+	free(str->mlx);
+	exit(1);
 	return (0);
 }
 
@@ -84,7 +86,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_extension(argv[1]) == 0)
 		ft_error(ERROR1);
 	str.data_map = load_map(argv[1]);
-	// parsing(&str);
+	parsing(&str);
 	while (str.data_map.map[i])
 	{
 		printf("%s", str.data_map.map[i]);
@@ -94,7 +96,7 @@ int	main(int argc, char **argv)
 	// str.mlx = mlx_init();
 	// xpm(&str);
 	// str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x,
-	//	str.img_height
+	//		str.img_height
 	// 		* str.nb_y, "So_long");
 	// images(&str, str.data_map.map);
 	// mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);

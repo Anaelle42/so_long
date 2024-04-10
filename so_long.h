@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 19:22:57 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:40:28 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_data
 
 }			t_data;
 
+void		free_stp(char **tab);
 void		images(t_data *struc, char **map);
 void		ft_error(char *error);
 void		xpm(t_data *struc);

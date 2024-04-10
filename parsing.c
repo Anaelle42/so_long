@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 18:29:47 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:40:00 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	flood_fill(char **map, t_data *str, t_number number)
 		}
 		y++;
 	}
+	free_stp(map);
 	if (number.c != 0 || number.e != 0)
 		ft_error(ERROR7);
 }
