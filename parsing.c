@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 18:40:00 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:35:42 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	parsing(t_data *str)
 	number.e = 0;
 	i = 0;
 	size = 0;
+	str->c = 0;
 	size = ft_strlen_number2(str->data_map.map[i]);
 	is_closed_by_walls(str);
 	while (str->data_map.map[i])

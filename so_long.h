@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 18:40:28 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:35:56 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_data
 	int		x;
 	int		c;
 	int		y;
+	int		score;
 	t_map	data_map;
 	int		nb_y;
 	int		nb_x;

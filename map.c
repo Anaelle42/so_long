@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 18:52:34 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:37:09 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,14 @@ t_map	load_map(char *file)
 
 int	finito(t_data *str)
 {
+	mlx_destroy_image(str->mlx, str->mur);
+	mlx_destroy_image(str->mlx, str->sol);
+	mlx_destroy_image(str->mlx, str->porte);
+	mlx_destroy_image(str->mlx, str->coin);
+	mlx_destroy_image(str->mlx, str->perso);
 	mlx_destroy_window(str->mlx, str->win);
 	mlx_destroy_display(str->mlx);
+	free_stp(str->data_map.map);
 	free(str->mlx);
 	exit(1);
 	return (0);
@@ -92,14 +98,15 @@ int	main(int argc, char **argv)
 		printf("%s", str.data_map.map[i]);
 		i++;
 	}
-	free_stp(str.data_map.map);
-	// str.mlx = mlx_init();
-	// xpm(&str);
-	// str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x,
-	//		str.img_height
-	// 		* str.nb_y, "So_long");
-	// images(&str, str.data_map.map);
-	// mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);
-	// mlx_hook(str.win, DestroyNotify, StructureNotifyMask, finito, &str);
-	// mlx_loop(str.mlx);
+	// free_stp(str.data_map.map);
+	str.compte_mvts = 0;
+	str.score = 0;
+	str.mlx = mlx_init();
+	xpm(&str);
+	str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x, str.img_height
+			* str.nb_y, "So_long");
+	images(&str, str.data_map.map);
+	mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);
+	mlx_hook(str.win, DestroyNotify, StructureNotifyMask, finito, &str);
+	mlx_loop(str.mlx);
 }

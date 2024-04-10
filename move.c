@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:38:24 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 17:44:18 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:37:22 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ int	fonction(int key, t_data *str)
 	{
 		str->data_map.map[str->y][str->x] = '0';
 		str->c--;
-		printf("	Coin restant : %i\n", str->c);
+		str->score++;
+		printf("	Score : %i\n", str->score);
 	}
 	if (str->data_map.map[str->y][str->x] == 'E')
 	{
