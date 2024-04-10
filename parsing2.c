@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:25:36 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/08 21:01:12 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:02:04 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	is_closed_by_walls(t_data *str)
 	while (str->data_map.map[j][i] && str->data_map.map[j][i] != '\n')
 	{
 		if (str->data_map.map[j][i] != '1')
-			ft_error(ERROR6);
+			ft_error(ERROR6, str);
 		i++;
 	}
 	j++;
@@ -77,18 +77,18 @@ void	is_closed_by_walls(t_data *str)
 	{
 		i = 0;
 		if (str->data_map.map[j][i] && str->data_map.map[j][i] != '1')
-			ft_error(ERROR6);
+			ft_error(ERROR6, str);
 		while (str->data_map.map[j][i] && str->data_map.map[j][i] != '\n')
 			i++;
 		if (str->data_map.map[j][i - 1] && str->data_map.map[j][i - 1] != '1')
-			ft_error(ERROR6);
+			ft_error(ERROR6, str);
 		j++;
 	}
 	i = 0;
 	while (str->data_map.map[j - 1][i] && str->data_map.map[j - 1][i] != '\n')
 	{
 		if (str->data_map.map[j - 1][i] != '1')
-			ft_error(ERROR6);
+			ft_error(ERROR6, str);
 		i++;
 	}
 	str->nb_y = j;

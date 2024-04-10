@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:35:42 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:47:45 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:10:11 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	xpm(t_data *struc)
 			&struc->img_width, &struc->img_height);
 	if (!struc->porte || !struc->sol || !struc->coin || !struc->mur
 		|| !struc->perso)
-		ft_error(ERROR8);
+		ft_error(ERROR8, struc);
 }
 
 void	affiche_toi(t_data *struc, void *img, int x, int y)

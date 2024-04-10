@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:48:08 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:01:28 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_data
 
 void		free_stp(char **tab);
 void		images(t_data *struc, char **map);
-void		ft_error(char *error);
+void		ft_error(char *error, t_data *str);
 void		xpm(t_data *struc);
 int			finito(t_data *str);
 int			fonction(int key, t_data *str);

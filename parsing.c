@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:35:42 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:03:13 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	flood_fill(char **map, t_data *str, t_number number)
 	}
 	free_stp(map);
 	if (number.c != 0 || number.e != 0)
-		ft_error(ERROR7);
+		ft_error(ERROR7, str);
 }
 
-char	**copy_map(char **map, int nb)
+char	**copy_map(char **map, int nb, t_data *str)
 {
 	char	**copy;
 	int		i;
@@ -80,7 +80,7 @@ char	**copy_map(char **map, int nb)
 	i = 0;
 	copy = malloc(sizeof(char *) * (nb + 1));
 	if (!copy)
-		ft_error(ERROR2);
+		ft_error(ERROR2, str);
 	while (map[i])
 	{
 		copy[i] = ft_strdup(map[i]);
@@ -108,12 +108,12 @@ void	parsing(t_data *str)
 	{
 		count_characters(str->data_map.map[i], &number, str);
 		if (!is_valid_characters(str->data_map.map[i]))
-			ft_error(ERROR3);
+			ft_error(ERROR3, str);
 		if (size != ft_strlen_number2(str->data_map.map[i]))
-			ft_error(ERROR5);
+			ft_error(ERROR5, str);
 		i++;
 	}
 	if (number.e != 1 || number.p != 1 || number.c < 1)
-		ft_error(ERROR4);
-	flood_fill(copy_map(str->data_map.map, i), str, number);
+		ft_error(ERROR4, str);
+	flood_fill(copy_map(str->data_map.map, i, str), str, number);
 }
