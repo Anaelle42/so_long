@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:35:42 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 19:22:09 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:47:45 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	xpm(t_data *struc)
 			&struc->img_width, &struc->img_height);
 	struc->porte = mlx_xpm_file_to_image(struc->mlx, "./xpm/porte.xpm",
 			&struc->img_width, &struc->img_height);
+	if (!struc->porte || !struc->sol || !struc->coin || !struc->mur
+		|| !struc->perso)
+		ft_error(ERROR8);
 }
 
 void	affiche_toi(t_data *struc, void *img, int x, int y)
@@ -39,7 +42,7 @@ void	images(t_data *struc, char **map)
 
 	x = 0;
 	y = 0;
-	//xpm(struc);
+	// xpm(struc);
 	while (map[y])
 	{
 		x = 0;

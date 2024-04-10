@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:35:56 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:48:08 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define ERROR5 "The map isn't rectangular"
 # define ERROR6 "The map isn't surrounded by walls"
 # define ERROR7 "No valid path"
+# define ERROR8 "When trying to opening textures files"
 
 # ifndef BOOL
 #  define BOOL
