@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/09 19:24:48 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:35:26 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,23 @@ void	ft_error(char *error)
 	printf("Error\n%s\n", error);
 	exit(1);
 }
+void	free_stp(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 t_map	load_map(char *file)
 {
 	t_list	*list;
+	t_list	*tmp;
 	t_map	map;
 	int		fd;
 	int		i;
@@ -43,12 +56,14 @@ t_map	load_map(char *file)
 	}
 	map.map = malloc(sizeof(char *) * (i + 1));
 	i = 0;
+	tmp = list;
 	while (list)
 	{
-		map.map[i] = list->content;
+		map.map[i] = ft_strdup(list->content);
 		list = list->next;
 		i++;
 	}
+	ft_lstclear(&tmp, free);
 	map.map[i] = NULL;
 	return (map);
 }
@@ -69,18 +84,20 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_extension(argv[1]) == 0)
 		ft_error(ERROR1);
 	str.data_map = load_map(argv[1]);
-	parsing(&str);
+	// parsing(&str);
 	while (str.data_map.map[i])
 	{
 		printf("%s", str.data_map.map[i]);
 		i++;
 	}
-	str.mlx = mlx_init();
-	xpm(&str);
-	str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x, str.img_height
-			* str.nb_y, "So_long");
-	images(&str, str.data_map.map);
-	mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);
-	mlx_hook(str.win, DestroyNotify, StructureNotifyMask, finito, &str);
-	mlx_loop(str.mlx);
+	free_stp(str.data_map.map);
+	// str.mlx = mlx_init();
+	// xpm(&str);
+	// str.win = mlx_new_window(str.mlx, str.img_width * str.nb_x,
+	//	str.img_height
+	// 		* str.nb_y, "So_long");
+	// images(&str, str.data_map.map);
+	// mlx_hook(str.win, KeyPress, KeyPressMask, fonction, &str);
+	// mlx_hook(str.win, DestroyNotify, StructureNotifyMask, finito, &str);
+	// mlx_loop(str.mlx);
 }
