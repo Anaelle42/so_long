@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:35:56 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/13 02:24:02 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,62 +24,67 @@
 # define ERROR5 "The map isn't rectangular"
 # define ERROR6 "The map isn't surrounded by walls"
 # define ERROR7 "No valid path"
+# define ERROR8 "Mlx error"
 
-# ifndef BOOL
-#  define BOOL
-typedef enum t_Bool
+typedef enum t_bool
 {
 	FALSE = 0,
 	TRUE = 1
-}			t_Bool;
-# endif
-
-typedef struct s_map
-{
-	char	**map;
-
-}			t_map;
+}				t_bool;
 
 typedef struct s_number
 {
-	int		c;
-	int		p;
-	int		e;
-}			t_number;
+	int			c;
+	int			p;
+	int			e;
+}				t_number;
+
+typedef struct s_map
+{
+	char		**map;
+	int			width;
+	int			height;
+}				t_map;
+
+typedef struct s_image
+{
+	int			img_height;
+	int			img_width;
+	void		*wall;
+	void		*floor;
+	void		*exit;
+	void		*player;
+	void		*collectible;
+}				t_image;
+
+typedef struct s_player
+{
+	int			x;
+	int			y;
+	int			c;
+	int			score;
+	int			movements;
+}				t_player;
 
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	int		img_height;
-	int		img_width;
-	void	*img;
-	void	*mur;
-	void	*sol;
-	void	*coin;
-	void	*porte;
-	void	*perso;
-	int		x;
-	int		c;
-	int		y;
-	int		score;
-	t_map	data_map;
-	int		nb_y;
-	int		nb_x;
-	int		compte_mvts;
+	void		*mlx;
+	void		*win;
+	t_map		map;
+	t_image		img;
+	t_player	player;
+}				t_data;
 
-}			t_data;
-
-void		free_stp(char **tab);
-void		images(t_data *struc, char **map);
-void		ft_error(char *error);
-void		xpm(t_data *struc);
-int			finito(t_data *str);
-int			fonction(int key, t_data *str);
-void		parsing(t_data *str);
-t_Bool		check_extension(char *ext);
-t_Bool		is_valid_characters(char *line);
-void		count_characters(char *line, t_number *number, t_data *str);
-void		is_closed_by_walls(t_data *str);
+void			free_tab(char **tab);
+void			display_images(t_data *data);
+void			ft_error(char *error, t_data *str);
+void			load_xpm_images(t_data *struc);
+int				on_destroy(t_data *str);
+int				key_hook(int key, t_data *data);
+void			parsing(t_data *str);
+t_bool			check_extension(char *ext);
+t_bool			is_valid_characters(char *line);
+void			count_characters(char *line, t_number *number, t_data *str);
+void			is_closed_by_walls(t_data *str);
 
 #endif

@@ -6,17 +6,19 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 17:41:54 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/10 19:35:42 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/04/12 20:23:30 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-size_t	ft_strlen_number2(const char *s)
+size_t	ft_strlen_bis(const char *s)
 {
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
 	return (i);
@@ -45,7 +47,7 @@ void	flood2(char **map, t_number *number, int y, int x)
 		flood2(map, number, y, x - 1);
 }
 
-void	flood_fill(char **map, t_data *str, t_number number)
+void	flood_fill(char **map, t_data *data, t_number number)
 {
 	int	x;
 	int	y;
@@ -60,19 +62,19 @@ void	flood_fill(char **map, t_data *str, t_number number)
 			if (map[y][x] == 'P')
 			{
 				flood2(map, &number, y, x);
-				str->y = y;
-				str->x = x;
+				data->player.y = y;
+				data->player.x = x;
 			}
 			x++;
 		}
 		y++;
 	}
-	free_stp(map);
+	free_tab(map);
 	if (number.c != 0 || number.e != 0)
-		ft_error(ERROR7);
+		ft_error(ERROR7, data);
 }
 
-char	**copy_map(char **map, int nb)
+char	**copy_map(t_data *data, int nb)
 {
 	char	**copy;
 	int		i;
@@ -80,17 +82,17 @@ char	**copy_map(char **map, int nb)
 	i = 0;
 	copy = malloc(sizeof(char *) * (nb + 1));
 	if (!copy)
-		ft_error(ERROR2);
-	while (map[i])
+		ft_error(ERROR2, data);
+	while (data->map.map[i])
 	{
-		copy[i] = ft_strdup(map[i]);
+		copy[i] = ft_strdup(data->map.map[i]);
 		i++;
 	}
 	copy[i] = NULL;
 	return (copy);
 }
 
-void	parsing(t_data *str)
+void	parsing(t_data *data)
 {
 	t_number	number;
 	int			i;
@@ -99,21 +101,22 @@ void	parsing(t_data *str)
 	number.c = 0;
 	number.p = 0;
 	number.e = 0;
+	data->player.c = 0;
 	i = 0;
-	size = 0;
-	str->c = 0;
-	size = ft_strlen_number2(str->data_map.map[i]);
-	is_closed_by_walls(str);
-	while (str->data_map.map[i])
+	size = ft_strlen_bis(data->map.map[i]);
+	if (!size)
+		ft_error(ERROR2, data);
+	is_closed_by_walls(data);
+	while (data->map.map[i])
 	{
-		count_characters(str->data_map.map[i], &number, str);
-		if (!is_valid_characters(str->data_map.map[i]))
-			ft_error(ERROR3);
-		if (size != ft_strlen_number2(str->data_map.map[i]))
-			ft_error(ERROR5);
+		count_characters(data->map.map[i], &number, data);
+		if (!is_valid_characters(data->map.map[i]))
+			ft_error(ERROR3, data);
+		if (size != ft_strlen_bis(data->map.map[i]))
+			ft_error(ERROR5, data);
 		i++;
 	}
 	if (number.e != 1 || number.p != 1 || number.c < 1)
-		ft_error(ERROR4);
-	flood_fill(copy_map(str->data_map.map, i), str, number);
+		ft_error(ERROR4, data);
+	flood_fill(copy_map(data, i), data, number);
 }

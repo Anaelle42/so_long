@@ -1,56 +1,63 @@
 NAME = so_long
+NAME_BONUS = so_long_bonus
 
-SRC = 	parsing.c \
-		parsing2.c \
-		map.c \
-		images.c \
-		move.c
+SRC = 	so_long.c \
+		parsing.c \
+		parsing_utils.c \
+		display_map.c \
+		movements.c 
+
+SRC_BONUS = so_long.c \
+			parsing.c \
+			parsing_utils.c \
+			display_map.c \
+			movements_bonus.c 
 
 OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra
 MLXFLAGS = -Lminilibx-linux -lmlx -lX11 -lXext
 
 RED = \033[0;31m
-GREEN = \033[0;32m
 YELLOW = \033[0;33m
-BLUE = \033[0;34m
-MAGENTA = \033[0;35m
-CYAN = \033[0;36m
 WHITE = \033[0m
 BOLD = \033[1m
 FLASH = \033[6m
 BANDE = \033[7m
 
-all : minilibx $(NAME)
+all : $(NAME)
+bonus : $(NAME_BONUS)
 
-minilibx:
+minilibx-linux/libmlx.a:
 	@make -C minilibx-linux >/dev/null 2>&1
-	@echo "${RED}${BOLD}	COUCOU MLX COMPILE"
+	@echo "${RED}${BOLD}	MLX COMPILE"
 	@echo "  /\_/\   "
 	@echo " ( o.o )  "
 	@echo "  > ^ <   ${WHITE}"
 
-ft_libft :
-	@make -s -C libft bonus
+libft/libft.a :
+	@make -s -C libft
 
-$(NAME) : ft_libft $(OBJ)
-	cc $(CFLAGS) $(OBJ) -o $(NAME) $(MLXFLAGS) libft/libft.a
-	@echo "${YELLOW}${BOLD}	RECOUCOU FICHIERS COMPILES ${WHITE}"
+$(NAME) : minilibx-linux/libmlx.a libft/libft.a $(OBJ)
+	cc $(OBJ) -o $(NAME) $(MLXFLAGS) libft/libft.a
+	@echo "${YELLOW}${BOLD}	FICHIERS COMPILES ${WHITE}"
 
-.o : .c 
-	cc $(CFLAGS) -c -o $< $@
+$(NAME_BONUS): minilibx-linux/libmlx.a libft/libft.a $(OBJ_BONUS)
+	cc $(OBJ_BONUS) -o $(NAME_BONUS) $(MLXFLAGS) libft/libft.a
+
+.c.o:
+	cc $(CFLAGS) -c $< -o $@
 
 clean :
-	rm -f $(OBJ)
-	make -C minilibx-linux clean >/dev/null 2>&1
-	make -C libft clean
+	rm -f $(OBJ) $(OBJ_BONUS)
+	@make -C minilibx-linux clean >/dev/null 2>&1
+	@make -s -C libft clean
 
 fclean : clean
-	rm -f $(NAME)
-	make -C libft fclean
+	rm -f $(NAME) $(NAME_BONUS)
+	@make -s -C libft fclean
 
 re : fclean all
-	@make -C minilibx-linux >/dev/null 2>&1
 
 .PHONY : clean fclean re 

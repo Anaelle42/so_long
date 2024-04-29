@@ -39,22 +39,18 @@ SRCS	=	ft_isalpha.c	\
 			printf/ft_printf.c \
       		printf/ft_putnbr_hexa.c \
       		printf/tools.c \
-      		printf/ft_printu.c
-
-SRCS_BONUS =	ft_lstnew.c \
-				ft_lstadd_front.c \
-				ft_lstsize.c \
-				ft_lstlast.c \
-				ft_lstadd_back.c \
-				ft_lstdelone.c \
-				ft_lstclear.c \
-				ft_lstiter.c \
-				ft_lstmap.c \
+      		printf/ft_printu.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
+			ft_lstlast.c \
+			ft_lstadd_back.c \
+			ft_lstdelone.c \
+			ft_lstclear.c \
+			ft_lstiter.c \
+			ft_lstmap.c \
 				
-
 OBJS = $(SRCS:.c=.o)
-
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CC		= cc
 
@@ -70,15 +66,11 @@ $(NAME)	: $(OBJS)
 all: $(NAME)
 
 clean	:
-	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@$(RM) $(OBJS) 
 
 fclean	:	clean
-	@$(RM) $(NAME) $(BONUS)			
+	@$(RM) $(NAME) 			
 
-re	:	fclean 
-		all
+re	:	fclean all
 
-bonus: $(NAME) $(OBJS_BONUS)
-	ar rcs $(NAME) -o $^
-
-.PHONY	:	all clean fclean re bonus
+.PHONY	:	all clean fclean re 
