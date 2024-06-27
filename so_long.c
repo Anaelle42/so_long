@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/16 15:25:26 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:38:53 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,18 @@ void	read_and_copy(t_list *tmp, t_list *list, t_data *data, int i)
 	if (!data->map.map)
 	{
 		ft_lstclear(&list, free);
-		ft_error(ERROR2, data);
+		ft_error(ERROR9, data);
 	}
 	i = 0;
 	tmp = list;
 	while (list)
 	{
 		data->map.map[i] = ft_strdup(list->content);
+		if (!data->map.map[i])
+		{
+			ft_lstclear(&list, free);
+			ft_error(ERROR9, data);
+		}
 		list = list->next;
 		i++;
 	}
@@ -75,8 +80,7 @@ void	read_map(char *file, t_data *data)
 		line = get_next_line(fd);
 		i++;
 	}
-	if (close(fd) == -1)
-		ft_error(ERROR2, data);
+	close(fd);
 	read_and_copy(tmp, list, data, i);
 }
 
@@ -99,10 +103,7 @@ int	main(int argc, char **argv)
 	data.win = mlx_new_window(data.mlx, data.img.img_width * data.map.width,
 			data.img.img_height * data.map.height, "Banana schtroumpf");
 	if (!data.win)
-	{
-		ft_printf("Error\nMlx Error\n");
-		on_destroy(&data);
-	}
+		ft_error(ERROR8, &data);
 	display_images(&data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, key_hook, &data);
 	mlx_hook(data.win, DestroyNotify, StructureNotifyMask, on_destroy, &data);

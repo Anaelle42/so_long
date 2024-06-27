@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/04/13 02:24:02 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/06/27 15:28:34 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERROR6 "The map isn't surrounded by walls"
 # define ERROR7 "No valid path"
 # define ERROR8 "Mlx error"
+# define ERROR9 "Malloc error"
 
 typedef enum t_bool
 {
