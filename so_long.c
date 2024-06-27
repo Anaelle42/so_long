@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/06/27 15:38:53 by ahenault         ###   ########.fr       */
+/*   Updated: 2024/06/27 16:06:52 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void	read_map(char *file, t_data *data)
 		line = get_next_line(fd);
 		i++;
 	}
-	close(fd);
+	if (close(fd) == -1)
+		ft_error(ERROR2, data);
 	read_and_copy(tmp, list, data, i);
 }
 
@@ -103,7 +104,10 @@ int	main(int argc, char **argv)
 	data.win = mlx_new_window(data.mlx, data.img.img_width * data.map.width,
 			data.img.img_height * data.map.height, "Banana schtroumpf");
 	if (!data.win)
-		ft_error(ERROR8, &data);
+	{
+		ft_printf("Error\nMlx Error\n");
+		on_destroy(&data);
+	}
 	display_images(&data);
 	mlx_hook(data.win, KeyPress, KeyPressMask, key_hook, &data);
 	mlx_hook(data.win, DestroyNotify, StructureNotifyMask, on_destroy, &data);
