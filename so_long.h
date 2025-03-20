@@ -77,7 +77,6 @@ typedef struct s_data
 }				t_data;
 
 void			free_tab(char **tab);
-
 void			display_images(t_data *data);
 void			ft_error(char *error, t_data *str);
 void			load_xpm_images(t_data *struc);
