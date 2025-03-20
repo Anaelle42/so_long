@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 15:55:57 by ahenault          #+#    #+#             */
-/*   Updated: 2024/06/27 16:05:50 by ahenault         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:36:42 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ typedef struct s_data
 }				t_data;
 
 void			free_tab(char **tab);
+
 void			display_images(t_data *data);
 void			ft_error(char *error, t_data *str);
 void			load_xpm_images(t_data *struc);
 int				on_destroy(t_data *str);
 int				key_hook(int key, t_data *data);
 void			parsing(t_data *str);
+void			read_map(char *file, t_data *data);
 t_bool			check_extension(char *ext);
 t_bool			is_valid_characters(char *line);
 void			count_characters(char *line, t_number *number, t_data *str);

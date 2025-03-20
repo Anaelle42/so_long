@@ -6,7 +6,7 @@
 /*   By: ahenault <ahenault@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 17:07:12 by ahenault          #+#    #+#             */
-/*   Updated: 2024/06/27 16:06:52 by ahenault         ###   ########.fr       */
+/*   Updated: 2025/03/20 15:29:09 by ahenault         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,58 +31,6 @@ void	free_tab(char **tab)
 		i++;
 	}
 	free(tab);
-}
-
-void	read_and_copy(t_list *tmp, t_list *list, t_data *data, int i)
-{
-	data->map.map = malloc(sizeof(char *) * (i + 1));
-	if (!data->map.map)
-	{
-		ft_lstclear(&list, free);
-		ft_error(ERROR9, data);
-	}
-	i = 0;
-	tmp = list;
-	while (list)
-	{
-		data->map.map[i] = ft_strdup(list->content);
-		if (!data->map.map[i])
-		{
-			ft_lstclear(&list, free);
-			ft_error(ERROR9, data);
-		}
-		list = list->next;
-		i++;
-	}
-	ft_lstclear(&tmp, free);
-	data->map.map[i] = NULL;
-}
-
-void	read_map(char *file, t_data *data)
-{
-	t_list	*list;
-	t_list	*tmp;
-	int		fd;
-	int		i;
-	char	*line;
-
-	line = NULL;
-	list = NULL;
-	tmp = NULL;
-	i = 0;
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		ft_error(ERROR2, data);
-	line = get_next_line(fd);
-	while (line != NULL)
-	{
-		ft_lstadd_back(&list, ft_lstnew((void *)line));
-		line = get_next_line(fd);
-		i++;
-	}
-	if (close(fd) == -1)
-		ft_error(ERROR2, data);
-	read_and_copy(tmp, list, data, i);
 }
 
 int	main(int argc, char **argv)

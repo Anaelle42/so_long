@@ -4,12 +4,14 @@ NAME_BONUS = so_long_bonus
 SRC = 	so_long.c \
 		parsing.c \
 		parsing_utils.c \
+		read_map.c \
 		display_map.c \
 		movements.c 
 
 SRC_BONUS = so_long.c \
 			parsing.c \
 			parsing_utils.c \
+			read_map.c \
 			display_map.c \
 			movements_bonus.c 
 
